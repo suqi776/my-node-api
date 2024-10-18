@@ -1,0 +1,30 @@
+import express from 'express';
+import dotenv from 'dotenv';
+import oneRouter from './routers/one.js'; // 引入文档路由
+import infoRouter from './routers/info.js'; // 引入信息路由
+import path from 'path';
+
+dotenv.config();
+
+// 创建一个新的 Express 应用
+const app = express();
+const port = process.env.PORT || 3333; // 设置服务器端口
+
+// 中间件，用于解析 JSON 请求体
+app.use(express.json());
+
+// API 路由
+app.use('/api/one', oneRouter);
+app.use('/api/info', infoRouter);
+
+//将html为主页
+app.get('/', (req, res) => {
+  res.sendFile(path.join(process.cwd(), 'public', 'index.html'));
+});
+
+// 启动服务器
+app.listen(port, () => {
+  console.log(`API 服务器正在运行，访问 http://localhost:${port}`);
+});
+
+export default app;
