@@ -11,11 +11,10 @@ const port = process.env.PORT || 3333; // 设置服务器端口
 // 中间件，用于解析 JSON 请求体
 app.use(express.json());
 
-connectDB()
-
 // API 路由：插入文档
 app.post('/api/documents', async (req, res) => {
   try {
+    await connectDB(); // 确保连接已建立
     const collection = getCollection("one"); // 获取指定的集合
     
     // 获取请求体中的文档数据
@@ -33,6 +32,7 @@ app.post('/api/documents', async (req, res) => {
 // API 路由：查询文档
 app.get('/api/documents', async (req, res) => {
   try {
+    await connectDB(); // 确保连接已建立
     const collection = getCollection("one"); // 获取指定的集合
     
     // 查询所有文档
