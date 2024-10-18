@@ -5,7 +5,7 @@
 		"mongodb": "^6.9.0"
 	},
 	"type": "module",
-	"name": "my-mongo-app",
+	"name": "my-node-api",
 	"version": "1.0.0",
 	"main": "app.js",
 	"scripts": {
