@@ -50,3 +50,5 @@ app.get('/api/documents', async (req, res) => {
 app.listen(port, () => {
   console.log(`API 服务器正在运行，访问 http://localhost:${port}`);
 });
+
+module.exports = app;
