@@ -1,10 +1,11 @@
 import { Router } from 'express';
 import { getCollection } from '../db/db.js';
+import authenticateToken from '../middleware/auth.js';
 
 const router = Router();
 
 // API 路由：插入文档
-router.post('/', async (req, res) => {
+router.post('/', authenticateToken, async (req, res) => {
   try {
     const collection = getCollection("one"); // 获取指定的集合
     
@@ -21,7 +22,7 @@ router.post('/', async (req, res) => {
 });
 
 // API 路由：查询所有文档
-router.get('/', async (req, res) => {
+router.get('/', authenticateToken, async (req, res) => {
   try {
     const collection = getCollection("one"); // 获取指定的集合
     
