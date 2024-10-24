@@ -21,7 +21,7 @@ app.use('/api/register', registerRouter);
 
 //将html为主页
 app.get('/', (req, res) => {
-  res.sendFile(path.join(process.cwd(), 'dist', 'index.html'));
+  res.sendFile(path.join(process.cwd(), 'public', 'index.html'));
 });
 
 // 启动服务器
