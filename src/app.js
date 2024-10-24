@@ -1,6 +1,5 @@
 import express from 'express';
 import dotenv from 'dotenv';
-import oneRouter from './routers/one.js'; // 引入文档路由
 import infoRouter from './routers/info.js'; // 引入信息路由
 import loginRouter from './routers/login.js'; // 引入信息路由
 import registerRouter from './routers/register.js'; // 引入信息路由
@@ -16,7 +15,6 @@ const port = process.env.PORT || 3333; // 设置服务器端口
 app.use(express.json());
 
 // API 路由
-app.use('/api/one', oneRouter);
 app.use('/api/info', infoRouter);
 app.use('/api/login', loginRouter);
 app.use('/api/register', registerRouter);
