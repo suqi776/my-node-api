@@ -233,14 +233,27 @@ router.post('/getAllUserInfo', authenticateToken, async (req, res) => {
         name_Id: user._id
       }).sort({ date: -1 }).limit(1).toArray(); // 限制只获取最新的一条记录
 
+      const latestWeight = latestInfo.length > 0 ? latestInfo[0].weight : '-';
+      const targetWeight = user.target || '-';
+      const difference = (latestWeight !== '-' && targetWeight !== '-') ? 
+                          (latestWeight - targetWeight).toFixed(2) : '-';
+
       return {
         userId: user._id,
         name: user.username,
-        target: user.target || '-',
+        target: targetWeight,
         latestDate: latestInfo.length > 0 ? latestInfo[0].date : '-', // 取最新记录的日期
-        latestWeight: latestInfo.length > 0 ? latestInfo[0].weight : '-'
+        latestWeight: latestWeight,
+        difference: difference
       };
     }));
+
+    // 根据 difference 排序，小的排前面
+    usersInfo.sort((a, b) => {
+      if (a.difference === '-') return 1; // 将没有差值的放到后面
+      if (b.difference === '-') return -1; // 将没有差值的放到后面
+      return parseFloat(a.difference) - parseFloat(b.difference); // 数值排序
+    });
 
     // 返回所有用户信息
     res.status(200).json(usersInfo);
@@ -249,7 +262,6 @@ router.post('/getAllUserInfo', authenticateToken, async (req, res) => {
     res.status(500).json({ error: '查询失败' });
   }
 });
-
 
 
 export default router;
