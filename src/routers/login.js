@@ -8,7 +8,6 @@ const router = Router();
 // 登录
 router.post('/', async (req, res) => {
   const { username, password } = req.body;
-  console.log(username, password)
   const collection = getCollection('user');
   const user = await collection.findOne({ username });
 
@@ -16,8 +15,9 @@ router.post('/', async (req, res) => {
     return res.status(401).json({ error: 'Invalid username or password' });
   }
 
-  const token = jwt.sign({ userId: user._id }, process.env.JWT_SECRET, { expiresIn: '1h' });
-  res.json({ token });
+  const token = jwt.sign({ userId: user._id }, process.env.JWT_SECRET, { expiresIn: '7d' });
+  console.log(token)
+  res.json({ token, userId: user._id });
 });
 
 export default router;
