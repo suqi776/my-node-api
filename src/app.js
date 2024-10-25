@@ -3,6 +3,7 @@ import dotenv from 'dotenv';
 import infoRouter from './routers/info.js'; // 引入信息路由
 import loginRouter from './routers/login.js'; // 引入信息路由
 import registerRouter from './routers/register.js'; // 引入信息路由
+import openapiRouter from './routers/openapi.js'; // 引入信息路由
 import path from 'path';
 
 dotenv.config();
@@ -18,6 +19,7 @@ app.use(express.json());
 app.use('/api/info', infoRouter);
 app.use('/api/login', loginRouter);
 app.use('/api/register', registerRouter);
+app.use('/api/openapi', openapiRouter);
 
 //将html为主页
 app.get('/', (req, res) => {
