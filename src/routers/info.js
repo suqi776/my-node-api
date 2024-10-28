@@ -263,5 +263,29 @@ router.post('/getAllUserInfo', authenticateToken, async (req, res) => {
   }
 });
 
+  // 查询所有体重 info 的 API 路由
+  router.post('/getInfoByAllWeight', authenticateToken, async (req, res) => {
+    try {
+      const { userId } = req.body;
+  
+      // 验证查询参数
+      if (!userId ) {
+        return res.status(400).json({ error: '缺少必要的查询参数' });
+      }
+  
+      const infoCollection = getCollection('info'); // 获取指定的 info 集合
+  
+      // 查询指定用户在 fromDate 到 toDate 的记录
+      const documents = await infoCollection.find({
+        name_Id: new ObjectId(userId),
+      }).sort({ date: 1 }).toArray(); // 使用 toArray() 获取多个结果
+  
+      // 返回查询到的文档
+      res.status(200).json(documents);
+    } catch (error) {
+      console.error('查询失败:', error);
+      res.status(500).json({ error: '查询失败' });
+    }
+  });
 
 export default router;
