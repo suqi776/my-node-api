@@ -30,7 +30,7 @@ app.use('/api/upload', uploadRouter);
 app.use(express.static(path.join(__dirname, 'public')));
 
 // 添加 catch-all 路由，将所有请求重定向到 `index.html`
-app.get('*', (req, res) => {
+app.get('/', (req, res) => {
   res.sendFile(path.resolve(__dirname, 'public', 'index.html'));
 });
 
