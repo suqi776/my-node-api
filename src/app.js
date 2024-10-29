@@ -23,8 +23,15 @@ app.use('/api/register', registerRouter);
 app.use('/api/openapi', openapiRouter);
 app.use('/api/upload', uploadRouter);
 //将html为主页
-app.get('/', (req, res) => {
-  res.sendFile(path.join(process.cwd(), 'public', 'index.html'));
+// app.get('/', (req, res) => {
+//   res.sendFile(path.join(process.cwd(), 'public', 'index.html'));
+// });
+// 静态文件目录，例如 Vite 打包后的文件
+app.use(express.static(path.join(__dirname, 'public')));
+
+// 添加 catch-all 路由，将所有请求重定向到 `index.html`
+app.get('*', (req, res) => {
+  res.sendFile(path.resolve(__dirname, 'public', 'index.html'));
 });
 
 // 启动服务器
