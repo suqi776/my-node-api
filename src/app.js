@@ -27,11 +27,11 @@ app.use('/api/upload', uploadRouter);
 //   res.sendFile(path.join(process.cwd(), 'public', 'index.html'));
 // });
 // 静态文件目录，例如 Vite 打包后的文件
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(process.cwd(), 'public')));
 
 // 添加 catch-all 路由，将所有请求重定向到 `index.html`
 app.get('/', (req, res) => {
-  res.sendFile(path.resolve(__dirname, 'public', 'index.html'));
+  res.sendFile(path.resolve(process.cwd(), 'public', 'index.html'));
 });
 
 // 启动服务器
