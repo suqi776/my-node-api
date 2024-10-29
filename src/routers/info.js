@@ -269,6 +269,7 @@ router.post('/getAllUserInfo', authenticateToken, async (req, res) => {
         userId: user._id,
         name: user.username,
         target: targetWeight,
+        avatar: user.avatar,
         latestDate: latestInfo.length > 0 ? latestInfo[0].date : '-', // 取最新记录的日期
         latestWeight: latestWeight,
         difference: difference
