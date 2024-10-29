@@ -4,6 +4,7 @@ import infoRouter from './routers/info.js'; // 引入信息路由
 import loginRouter from './routers/login.js'; // 引入信息路由
 import registerRouter from './routers/register.js'; // 引入信息路由
 import openapiRouter from './routers/openapi.js'; // 引入信息路由
+import uploadRouter from './routers/upload.js';
 import path from 'path';
 
 dotenv.config();
@@ -20,7 +21,7 @@ app.use('/api/info', infoRouter);
 app.use('/api/login', loginRouter);
 app.use('/api/register', registerRouter);
 app.use('/api/openapi', openapiRouter);
-
+app.use('/api/upload', uploadRouter);
 //将html为主页
 app.get('/', (req, res) => {
   res.sendFile(path.join(process.cwd(), 'public', 'index.html'));

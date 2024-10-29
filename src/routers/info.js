@@ -188,6 +188,33 @@ router.post('/getTargetWeight', authenticateToken, async (req, res) => {
   }
 });
 
+// 根据userid查询 头像
+router.post('/getUserAvatar', authenticateToken, async (req, res) => {
+  try {
+    const { userId } = req.body;
+
+    // 验证查询参数
+    if (!userId) {
+      return res.status(400).json({ error: '缺少必要的查询参数' });
+    }
+
+    const infoCollection = getCollection('user'); // 获取指定的 info 集合
+
+    // 查询指定用户在指定日期的记录
+    const documents = await infoCollection.findOne({
+      _id: new ObjectId(userId),
+    });
+
+    res.status(200).json({
+      avatar: documents.avatar,
+    });
+
+  } catch (error) {
+    console.error('查询失败:', error);
+    res.status(500).json({ error: '查询失败' });
+  }
+});
+
 // 设置目标体重的 API 路由
 router.post('/setTargetWeight', authenticateToken, async (req, res) => {
   try {

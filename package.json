@@ -5,8 +5,10 @@
 		"dotenv": "^16.4.5",
 		"express": "^4.21.1",
 		"express-rate-limit": "^7.4.1",
+		"form-data": "^4.0.1",
 		"jsonwebtoken": "^9.0.2",
-		"mongodb": "^6.9.0"
+		"mongodb": "^6.9.0",
+		"multer": "1.4.5-lts.1"
 	},
 	"type": "module",
 	"name": "my-node-api",
