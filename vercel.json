@@ -5,5 +5,11 @@
       "src": "/api/(.*)", 
       "dest": "/api/index.js" 
     }
+  ],
+  "redirects": [
+    {
+      "source": "/(.*)",
+      "destination": "https://api.suqi.xyz/"
+    }
   ]
 }
