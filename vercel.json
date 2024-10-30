@@ -5,5 +5,8 @@
       "src": "/api/(.*)", 
       "dest": "/api/index.js" 
     }
+  ],
+  "redirects": [
+    { "source": "/login", "destination": "/login", "statusCode": 301 }
   ]
 }
