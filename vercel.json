@@ -7,7 +7,7 @@
     },
     {
       "src": "/(.*)",
-      "dest": "https://api.suqi.xyz/"
+      "dest": "/(*)"
     }
   ]
 }
